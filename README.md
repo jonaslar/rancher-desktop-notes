@@ -3,9 +3,13 @@
 After you have installed Rancher Desktop on your mac, windows or linux, you might want to add some resources to your Kubernetes.
 Below I have described some howtos and gathered some links.
 
-## Install Kubernetes desktop
+## Install Kubernetes Dashboard
 
-[How to install Kubernetes Desktop](https://rancher.com/docs/k3s/latest/en/installation/kube-dashboard/)
+[How to install Kubernetes Dashboard](https://rancher.com/docs/k3s/latest/en/installation/kube-dashboard/)
+
+Here is an example from Kubernetes dashboard:
+
+![Running Deployments](images/kube-dashboard.png)
 
 ## Create image
 
@@ -89,4 +93,5 @@ Install on Kubernetes
 
     To use it, checkout the custom resource definitions (CRDs) introduced by this operator to start using it.
 ```
+
 ## More to come
