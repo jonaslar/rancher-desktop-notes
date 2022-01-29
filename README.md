@@ -11,6 +11,14 @@ Here is an example from Kubernetes dashboard:
 
 ![Running Deployments](images/kube-dashboard.png)
 
+Get logon token:
+
+``` bash
+kubectl -n kubernetes-dashboard describe secret admin-user-token | grep '^token'
+```
+
+Forward Kubernetes Dashboard in Rancher Desktop GUI, or by "kubectl proxy".
+
 ## Create image
 
 ### Pull base image
@@ -71,6 +79,8 @@ kubectl create deployment nt-policy-engine --image=nt-pol-engine:0.1 -n jonas
 
 ## Install ArgoCD
 
+### Operator
+
 [How to install ArgoCD](https://operatorhub.io/operator/argocd-operator)
 
 ``` text
@@ -93,5 +103,41 @@ Install on Kubernetes
 
     To use it, checkout the custom resource definitions (CRDs) introduced by this operator to start using it.
 ```
+
+### Create ArgoCD Server
+
+[ArgoCD Basics](https://argocd-operator.readthedocs.io/en/latest/usage/basics/)
+
+argocd.yaml:
+
+``` yaml
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  name: example-argocd
+  labels:
+    example: basic
+spec: {}
+```
+
+``` bash
+kubectl create -n argocd -f argocd.yaml
+
+```
+
+You can now verify your installation by forwarding the argocd-server listening port and log in.
+
+![Running Deployments](images/rancher-desktop-forward-argocd-server.png)
+
+To log in I advice to set a simpler admin password:
+
+``` bash
+kubectl -n argocd patch secret example-argocd-cluster \
+  -p '{"stringData": {
+    "admin.password": "test123"
+  }}'
+```
+
+Log in on address "https://localhost:port_forwaded".
 
 ## More to come
