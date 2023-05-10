@@ -19,6 +19,18 @@ kubectl -n kubernetes-dashboard describe secret admin-user-token | grep '^token'
 
 Forward Kubernetes Dashboard in Rancher Desktop GUI, or by "kubectl proxy".
 
+## Example import image
+
+Log on to registry:
+
+`` bash
+nerdctl login -u `oc whoami` -p `oc whoami --show-token` http-route-to-registry/openshift
+```
+
+```bash
+nerdctl -n k8s.io pull default-route-openshift-image-registry.apps.ocpdq02.norsk-tipping.no/openshift/newsfrontendv1:dev
+```
+
 ## Create image
 
 ### Pull base image
