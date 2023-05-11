@@ -23,7 +23,7 @@ Forward Kubernetes Dashboard in Rancher Desktop GUI, or by "kubectl proxy".
 
 Log on to registry:
 
-`` bash
+``` bash
 nerdctl login -u `oc whoami` -p `oc whoami --show-token` http-route-to-registry/openshift
 ```
 
